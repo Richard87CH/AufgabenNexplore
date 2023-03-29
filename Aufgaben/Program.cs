@@ -57,7 +57,7 @@ namespace ConsoleApp
                 Console.WriteLine("4. Aufsteigend sortieren");
                 Console.WriteLine("0. Zurück");
 
-                Console.WriteLine("\nBitte die Zahl des gewünschten Menüpunkts eingeben und Enter drücken:");
+                Console.WriteLine("\nBitte die Zahl des gewünschten Menüpunkts eingeben und mit Enter bestätigen:");
                 Auswahl = int.Parse(Console.ReadLine());
 
                 switch (Auswahl)
@@ -95,9 +95,8 @@ namespace ConsoleApp
             Trennlinie();
         }
 
-     
-
-        static void FindMinMax(bool FindMin) 
+        // Methode zum Finden der kleinsten/grössten von drei Zahlen
+        static void FindMinMax(bool FindMin)
         {
             int num1, num2, num3;
             Console.WriteLine("\nBitte drei Zahlen eingeben und nach jeder Zahl Enter drücken:");
@@ -124,8 +123,6 @@ namespace ConsoleApp
             Console.WriteLine($"{caption} {extremal}");
             Trennlinie();
         }
-
-       
 
         // Methode zum aufsteigenden Sortieren von drei Zahlen
         static void Sort()
@@ -154,7 +151,7 @@ namespace ConsoleApp
                 num1 = num2;
                 num2 = temp;
             }
-            Console.WriteLine("\nAufsteigend sortiert: {0}, {1}, {2}", num1, num2, num3);
+            Console.WriteLine($"\nAufsteigend sortiert: {num1} ,{num2}, {num3}");
             Trennlinie();
         }
 
@@ -162,17 +159,13 @@ namespace ConsoleApp
         static void Words()
         {
             string word1, word2, word3;
-            Console.WriteLine("\nBitte drei Wörter eingeben und nach jedem Wort Enter drücken:");
+            Console.WriteLine("\nBitte drei Wörter eingeben und jedes Wort mit Enter bestätigen:");
             word1 = Console.ReadLine();
             word2 = Console.ReadLine();
             word3 = Console.ReadLine();
             List<string> words = new List<string>() { word1, word2, word3 };
             words.Sort();
             Console.Write($"\nNach Alphabet sortiert: {string.Join(", ",words)} ");
-            
-            
-         
-            
             Console.WriteLine();
             Trennlinie();
         }
@@ -180,22 +173,16 @@ namespace ConsoleApp
         // Methode zum Anzeigen einer Pyramide bestehend aus 'X' und Leerschlägen
         static void Pyramid()
         {
-            int height;
             Console.WriteLine("\nBitte die gewünschte Pyramidenhöhe in Zeilen angeben:");
-            height = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < height; i++)
+            var input = Console.ReadLine();
+                if (int.TryParse(input, out var height))
             {
-                for (int j = 0; j < height - i - 1; j++)
+                for (int i = 1; i <= height; i++)
                 {
-                    Console.Write(" ");
+                    var air = new string(' ', height - i);
+                    var solid = new string('%', i * 2 - 1);
+                    Console.WriteLine($"{air}{solid}");
                 }
-
-                for (int j = 0; j < (2 * i + 1); j++)
-                {
-                    Console.Write("X");
-                }
-                Console.WriteLine();
             }
         }
     }
